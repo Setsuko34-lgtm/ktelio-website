@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council Verdict — Round 2 — Ktelio Landing Page</title>
+<style>
+  :root{
+    --ink:#1c2530; --muted:#5c6b7a; --line:#e2e8ef; --bg:#fafbfc; --white:#fff;
+    --navy:#0e2a4a; --blue:#1c5fa8; --gold-dark:#b9852a;
+    --red:#b5453d; --red-bg:#fbeeed;
+    --green:#2f7d5c; --green-bg:#eaf6f0;
+    --purple:#6a4c93;
+    --teal:#1c6f7a;
+    --orange:#c1682e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.65;}
+  .wrap{max-width:840px;margin:0 auto;padding:48px 24px 80px;}
+  .masthead{text-align:center;margin-bottom:36px;}
+  .masthead .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .masthead h1{font-size:26px;margin:0 0 8px;color:var(--navy);font-weight:800;}
+  .masthead .subject{font-size:15px;color:var(--muted);}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin-bottom:22px;}
+  .verdict h2{font-size:16px;color:var(--navy);margin:0 0 12px;font-weight:800;}
+  .verdict-section{margin-bottom:26px;}
+  .verdict-section:last-child{margin-bottom:0;}
+  .verdict-section p{margin:0 0 10px;font-size:15px;}
+  .verdict-section ol,.verdict-section ul{margin:8px 0 0;padding-left:20px;}
+  .verdict-section li{margin-bottom:8px;font-size:15px;}
+  .tag-agree{color:var(--green);}
+  .tag-clash{color:var(--gold-dark);}
+  .tag-blind{color:var(--purple);}
+  .tag-rec{color:var(--blue);}
+  .tag-first{color:var(--red);}
+  .consensus-strip{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap;}
+  .consensus-pill{flex:1;min-width:220px;border-radius:10px;padding:14px 16px;font-size:13.5px;}
+  .consensus-pill b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .pill-strong{background:var(--green-bg);color:#1c4f3a;}
+  .pill-strong b{color:var(--green);}
+  .pill-weak{background:var(--red-bg);color:#5c2b26;}
+  .pill-weak b{color:var(--red);}
+  details{background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+  details summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:15px;color:var(--navy);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary .chev{color:var(--muted);font-size:13px;transition:transform .2s ease;}
+  details[open] summary .chev{transform:rotate(90deg);}
+  details .body{padding:0 22px 20px;font-size:14.5px;color:var(--ink);border-top:1px solid var(--line);padding-top:16px;}
+  details .body p{margin:0 0 10px;}
+  details .body p:last-child{margin-bottom:0;}
+  .adv-badge{display:inline-block;width:10px;height:10px;border-radius:999px;margin-right:10px;flex-shrink:0;}
+  .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:34px 0 14px;}
+  footer{text-align:center;margin-top:40px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="eyebrow">LLM Council · Round 2</div>
+    <h1>What Else Should Change</h1>
+    <div class="subject">Follow-up review after the round-1 fixes shipped (fake toast removed, mailto form, equal-weight buttons, click tracking, KTEL explainer) — focused on validation-fit and mobile friendliness.</div>
+  </div>
+
+  <div class="card">
+    <div class="consensus-strip">
+      <div class="consensus-pill pill-strong">
+        <b>Peer review: strongest response</b>
+        The First Principles Thinker — 5 of 5 reviewers picked this independently, for reframing the question from "is this honest" to "does this complete a transaction," and for noticing the debug panel's ratio is itself corrupted by the broken free link.
+      </div>
+      <div class="consensus-pill pill-weak">
+        <b>Peer review: biggest blind spot</b>
+        The Expansionist — 5 of 5 reviewers flagged its "live counter" idea as manufacturing fake momentum from near-zero traffic, undoing the honesty work from round 1.
+      </div>
+    </div>
+  </div>
+
+  <div class="card verdict">
+    <div class="verdict-section">
+      <h2><span class="tag-agree">●</span> Where the Council Agrees</h2>
+      <p>Four of five advisors independently walked the same funnel and hit the same wall: a tourist picks a route, taps <strong>"Book it yourself," and lands on a Google search, not a ticket</strong> — the free path doesn't actually exist yet for 18 of 23 routes. In parallel, anyone who reaches for the paid path fires a <strong>mailto: link that fails silently</strong> on any phone without a configured email app. Near-unanimous agreement on a third point: <strong>the nav disappears entirely below 860px</strong>, taking "How it works," "Why trust us," and "FAQ" with it — exactly the content built to earn trust, invisible on the device most tourists will actually use. All three are hours of work, not a redesign, and the council agrees they outrank everything else currently on the table.</p>
+    </div>
+
+    <div class="verdict-section">
+      <h2><span class="tag-clash">●</span> Where the Council Clashes</h2>
+      <p>Disclosure vs. reduction: the Contrarian and First Principles Thinker want to ship only the 3-5 fully-mapped real routes rather than carry 23 routes on a search-engine placeholder. The Executor and Outsider are more permissive — just relabel the button honestly ("Search official site") and keep all 23. The council leans toward the smaller, fully-real surface, because a mislabeled button on most of the list still teaches visitors "free = search engine," which biases the very ratio the week is designed to measure.</p>
+      <p>The sharper clash is with the Expansionist's "live counter" idea (turning debug data into a public momentum signal like "3 people checked routes today"). Every reviewer flagged this as fabricating social proof from near-zero real traffic — precisely the dishonesty round 1 removed. It also buried the mobile-nav bug entirely. This idea should be discarded, not folded in.</p>
+    </div>
+
+    <div class="verdict-section">
+      <h2><span class="tag-blind">●</span> Blind Spots the Council Caught</h2>
+      <ul>
+        <li><strong>No dry run planned.</strong> Nobody proposed actually testing the fixes end-to-end on a real phone before the week starts — sending a real message with no mail app configured, clicking every route link, confirming what happens.</li>
+        <li><strong>Tracking validity unquestioned.</strong> Nobody asked whether the localStorage click counter survives a page refresh, private/incognito browsing, or a visitor switching devices — if it doesn't, the ratio the week depends on is corrupted before it starts.</li>
+        <li><strong>No operational tail.</strong> Nobody addressed what happens after a message lands in an inbox or WhatsApp — is anyone monitoring it, and what's the actual promised turnaround (the FAQ still just says "shortly").</li>
+        <li><strong>Channel sprawl risk.</strong> Stacking mailto + WhatsApp + plain-text email as parallel fallbacks could blur the one clear signal a validation week wants to read.</li>
+      </ul>
+    </div>
+
+    <div class="verdict-section">
+      <h2><span class="tag-rec">●</span> The Recommendation</h2>
+      <p>Fix in funnel order, not checklist order:</p>
+      <ol>
+        <li>Fix the mobile nav — a plain "Menu" text link jumping to an in-page anchor list is enough; no full hamburger rebuild needed this week.</li>
+        <li>Fix or relabel the free path — hand-map the highest-traffic 3-5 routes to real KTEL sites; for the rest, either drop them from v1 or relabel the button honestly so no click lands somewhere the label didn't promise.</li>
+        <li>Fix the mailto dead end — show the plain email address visibly next to the button, and add exactly one more fallback (WhatsApp click-to-chat), not three parallel channels.</li>
+        <li>Before the week starts, dry-run every path with no mail client configured, click every shipped route link, and confirm the click counter survives a refresh and private browsing.</li>
+        <li>Reject the live-counter idea outright — it reintroduces the fabricated social proof round 1 deliberately removed.</li>
+      </ol>
+    </div>
+
+    <div class="verdict-section">
+      <h2><span class="tag-first">●</span> The One Thing to Do First</h2>
+      <p>Fix the free-path routes (or relabel the button honestly) and fix the mobile nav before anything else — both need to be done before the validation week starts. Everything else, including the mailto fallback, is secondary to making sure the two paths actually being compared — free vs. paid — both resolve to something real.</p>
+    </div>
+  </div>
+
+  <div class="section-title">Full Advisor Responses</div>
+
+  <details>
+    <summary><span><span class="adv-badge" style="background:var(--teal);"></span>The First Principles Thinker — rated strongest by peer review</span><span class="chev">▸</span></summary>
+    <div class="body">
+      <p>Wrong lens. The team fixed "is this page honest" and left "does this page actually complete a transaction." Walk the funnel as a real tourist on a phone: they land, understand KTEL, pick a route, hit "Book it yourself" — and get dumped into a Google search, not a ticket. That's the free path silently not existing. If most clicks go there, the debug panel will show a ratio measuring clicks-to-search-results, not clicks-to-outcomes.</p>
+      <p>Fix: hand-map the 3-5 highest-traffic routes to real KTEL sites before launch, not all 23 — coverage over completeness.</p>
+      <p>Second: mailto fails silently on exactly the devices most tourists browse on. Add a visible fallback: a tappable WhatsApp link or plain "email us at hello@ktelio.gr" text.</p>
+      <p>Third: nav links vanishing under 860px means "Why trust us" and "FAQ" — the content built to compensate for lack of trust — are invisible to most visitors.</p>
+      <p>Everything else (tracking, banner, form fields) is instrumentation around a funnel with two broken links. Fix the links first.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="adv-badge" style="background:var(--red);"></span>The Contrarian</span><span class="chev">▸</span></summary>
+    <div class="body">
+      <p>The mobile nav is the fatal flaw here, not a nitpick. Below 860px the entire nav vanishes with no hamburger — but "Get your ticket" stays visible. That's a dark-pattern shape: the only reachable action is the CTA, while "How it works," "Why trust us," and "FAQ" are unreachable except by blind scrolling. Fix the hamburger before touching anything else.</p>
+      <p>Second: "Book it yourself" opening a Google search instead of the real KTEL site is a bait-and-switch the moment someone clicks it. Either label it honestly ("Search for official tickets") or don't ship routes you haven't mapped yet — 5 real ones beats 23 fake-feeling ones.</p>
+      <p>Third: mailto as sole backend combined with a free-text contact field is a silent-failure trap. Minimum fix: a visible "opens your email app — no email app? copy this address instead" fallback with a copyable mailto string.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="adv-badge" style="background:var(--orange);"></span>The Expansionist — flagged as biggest blind spot by peer review</span><span class="chev">▸</span></summary>
+    <div class="body">
+      <p>Everyone's stuck evaluating whether this fixes last week's flags — wrong question. The bottleneck is trust transfer in one week, and the site is optimizing for polish when it should optimize for evidence.</p>
+      <p>Biggest miss: no visible commitment device that makes the founder look in-demand rather than pre-launch. Add a live counter reading from the same localStorage/debug data ("3 people checked routes today, 1 booking request sent") — turns the debug panel into a public momentum signal.</p>
+      <p>Second: the free-vs-paid signal test is the whole point, but the Google-search redirect silently teaches visitors "free = generic search, paid = concierge," biasing the ratio. Fix at minimum 3-5 high-traffic routes with real links.</p>
+      <p>Third: the mailto fallback should have a WhatsApp click-to-chat (wa.me) as a parallel path — works on every phone with zero configured email client.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="adv-badge" style="background:var(--purple);"></span>The Outsider</span><span class="chev">▸</span></summary>
+    <div class="body">
+      <p>I've never heard of KTEL. The nav links vanishing below 860px is the biggest problem — on my phone I can't reach "How it works," "Why trust us," or "FAQ," the exact sections that would tell me if this is legit. Fix this before anything else.</p>
+      <p>The free button opening a Google search instead of the actual bus site will kill trust instantly — label it honestly ("Search for official tickets").</p>
+      <p>The mailto form failing silently on many phones is a real risk — add a visible fallback: email and WhatsApp shown as plain text/tap-to-copy.</p>
+      <p>Smaller: the contact field needs a placeholder ("email or WhatsApp number"), and "shortly" in the FAQ should be a real number ("within 24 hours").</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span><span class="adv-badge" style="background:var(--blue);"></span>The Executor</span><span class="chev">▸</span></summary>
+    <div class="body">
+      <p>Priority 1 — the mailto dead-end. Add the actual email address visible as plain text next to the button as a fallback. Fifteen minutes of work.</p>
+      <p>Priority 2 — mobile nav gone below 860px. A "Menu ▾" text link jumping to an in-page anchor list is a two-hour fix, not a redesign.</p>
+      <p>Priority 3 — the free button opens a Google search, not a ticket — must say so on the button ("Search official site").</p>
+      <p>Priority 4 — WhatsApp Business in the footer is plain non-clickable text — make it a wa.me link, five minutes.</p>
+      <p>Everything else (validation hints, "shortly" vagueness, English-only, no photos) doesn't block validation week — skip for now.</p>
+    </div>
+  </details>
+
+  <footer>
+    Counciled: Ktelio landing page, round 2 · 5 advisors, peer-reviewed anonymously, synthesized by the Chairman · Generated 2026-07-22
+  </footer>
+
+</div>
+</body>
+</html>
