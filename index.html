@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ktelio — Greek Intercity Buses, Finally Easy to Book</title>
+<meta name="description" content="Ktelio brings Greece's scattered regional KTEL bus networks into one place. Book Athens to Delphi, Meteora, Nafplio and more yourself for free, or let us handle it for €5.">
+<meta property="og:title" content="Ktelio — Greek Intercity Buses, Finally Easy to Book">
+<meta property="og:description" content="One place for Greece's fragmented regional bus network. Free official links, or a €5 concierge booking — your choice, always.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ktelio — Greek Intercity Buses, Finally Easy to Book">
+<meta name="twitter:description" content="Book Greece's regional KTEL buses without hunting for the right local site.">
+<meta name="theme-color" content="#0e2a4a">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%230e2a4a'/%3E%3Crect x='52' y='78' width='98' height='48' rx='16' fill='none' stroke='%23fff' stroke-width='9'/%3E%3Ccircle cx='74' cy='130' r='9.5' fill='none' stroke='%23fff' stroke-width='9'/%3E%3Ccircle cx='126' cy='130' r='9.5' fill='none' stroke='%23fff' stroke-width='9'/%3E%3Ccircle cx='146' cy='116' r='6' fill='%23d8a13a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d2847;
+    --navy-dark:#081a2e;
+    --blue:#1c5fa8;
+    --sky:#eaf2fb;
+    --gold:#d8a13a;
+    --gold-dark:#b9852a;
+    --terracotta:#c1622f;
+    --terracotta-bg:#fbeee5;
+    --olive:#6b7a4f;
+    --ink:#1c2530;
+    --muted:#5c6b7a;
+    --line:#e2e8ef;
+    --white:#ffffff;
+    --radius:16px;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--serif);}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .badge{
+    display:inline-flex;align-items:center;
+    background:rgba(216,161,58,.14);
+    color:var(--gold-dark);
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:20px;
+    border:1px solid rgba(216,161,58,.3);
+  }
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;color:var(--navy);font-family:var(--serif);letter-spacing:-.01em;}
+  .logo-mark{
+    width:36px;height:36px;flex-shrink:0;display:block;
+  }
+  nav ul{list-style:none;display:flex;gap:32px;}
+  nav ul a{font-size:15px;font-weight:600;color:var(--navy);opacity:.8;}
+  nav ul a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--navy);color:var(--white);
+    padding:10px 20px;border-radius:999px;
+    font-weight:700;font-size:14px;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--navy-dark);}
+  .nav-links-mobile{display:none;}
+  .nav-toggle{
+    display:none;background:none;border:1px solid var(--line);border-radius:8px;
+    cursor:pointer;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--navy);padding:9px 14px;line-height:1;
+  }
+  .mobile-menu{
+    display:none;position:sticky;top:66px;z-index:49;
+    background:var(--white);border-bottom:1px solid var(--line);
+    box-shadow:0 12px 24px rgba(14,42,74,.08);
+  }
+  .mobile-menu.open{display:block;}
+  .mobile-menu ul{list-style:none;display:flex;flex-direction:column;padding:8px 24px 14px;}
+  .mobile-menu ul li a{display:block;padding:13px 4px;font-weight:600;font-size:15px;color:var(--navy);border-bottom:1px solid var(--line);}
+  .mobile-menu ul li:last-child a{border-bottom:none;color:var(--gold-dark);}
+
+  /* HERO */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% 0%, rgba(216,161,58,.13), transparent 60%),
+      linear-gradient(160deg,var(--navy) 0%,var(--navy-dark) 100%);
+    color:var(--white);
+    padding:110px 24px 120px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-120px;top:-120px;
+    width:420px;height:420px;
+    background:radial-gradient(circle,rgba(216,161,58,.25),transparent 70%);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:22px 22px;
+    opacity:.5;pointer-events:none;
+  }
+  .hero-inner{max-width:1120px;margin:0 auto;position:relative;z-index:2;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .hero h1{
+    font-size:52px;line-height:1.1;font-weight:600;letter-spacing:-.02em;margin-bottom:22px;
+  }
+  .hero h1 em{color:var(--gold);font-style:italic;font-weight:500;}
+  .hero p.lead{font-size:18.5px;color:#c7d4e5;max-width:520px;margin-bottom:34px;line-height:1.7;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;
+    border:none;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{
+    background:linear-gradient(135deg,#e8b654,var(--gold) 55%,var(--gold-dark));
+    color:var(--navy-dark);box-shadow:0 8px 20px rgba(216,161,58,.3);
+    position:relative;overflow:hidden;
+  }
+  .btn-gold::after{
+    content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg);animation:shimmer 3.2s ease-in-out infinite;
+  }
+  @keyframes shimmer{0%{left:-75%;}45%,100%{left:130%;}}
+  .btn-gold:hover{box-shadow:0 12px 28px rgba(216,161,58,.45);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:var(--white);border:1px solid rgba(255,255,255,.35);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .hero-stats{display:flex;gap:38px;margin-top:40px;flex-wrap:wrap;}
+  .hero-stat b{display:block;font-size:58px;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em;}
+  .hero-stat b .count{font-size:inherit;font-weight:inherit;color:inherit;}
+  .hero-stat span{font-size:13px;color:#a9bad0;}
+  .stats-footnote{font-size:12px;color:#8296ad;margin-top:14px;max-width:420px;line-height:1.5;}
+
+  .hero-card{
+    background:var(--white);
+    border-radius:22px;
+    padding:28px;
+    color:var(--ink);
+    box-shadow:0 30px 70px rgba(0,0,0,.4);
+    border:1px solid rgba(255,255,255,.5);
+  }
+  .hero-card h3{font-size:12.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;font-family:var(--sans);}
+  .route-mini{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+    text-decoration:none;color:inherit;cursor:pointer;
+  }
+  .route-mini:last-child{border-bottom:none;}
+  .route-mini:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px;}
+  .route-mini .r-name{font-weight:600;font-size:15px;flex:1;font-family:var(--serif);}
+  .route-mini .r-name small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:2px;font-family:var(--sans);}
+  .pill{
+    background:var(--sky);color:var(--blue);
+    font-size:12.5px;font-weight:700;
+    padding:6px 12px;border-radius:999px;font-family:var(--sans);
+  }
+
+  .scroll-hint{
+    position:relative;z-index:2;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    margin:60px auto 0;
+    text-decoration:none;
+    color:#a9bad0;
+    font-family:var(--sans);font-size:12.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.08em;
+    text-align:center;
+    width:fit-content;
+  }
+  .scroll-hint:hover{color:var(--gold);}
+  .scroll-hint svg{animation:scroll-bounce 1.8s ease-in-out infinite;}
+  .scroll-hint:hover svg{stroke:var(--gold);}
+  @keyframes scroll-bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(8px);}
+  }
+
+  /* SECTION SHARED */
+  section{padding:108px 0;}
+  .section-head{max-width:600px;margin:0 auto 60px;text-align:center;}
+  .section-head .eyebrow{
+    display:block;font-family:var(--sans);font-size:12.5px;font-weight:700;color:var(--terracotta);
+    text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;
+  }
+  .section-head h2{font-size:36px;font-weight:600;color:var(--navy);margin-bottom:16px;letter-spacing:-.015em;}
+  .section-head p{color:var(--muted);font-size:16.5px;line-height:1.7;}
+  .section-gray{background:var(--sky);}
+
+  /* WHY */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .why-card{
+    background:var(--white);
+    border:1px solid rgba(14,42,74,.07);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    box-shadow:0 2px 8px rgba(14,42,74,.04);
+    position:relative;
+  }
+  .why-card h3{font-size:20px;font-weight:600;margin-bottom:12px;color:var(--navy);}
+  .why-card p{color:var(--muted);font-size:15px;line-height:1.65;}
+
+  /* HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step;}
+  .step{
+    position:relative;padding:30px 24px;background:var(--white);border-radius:var(--radius);
+    border:1px solid rgba(14,42,74,.07);box-shadow:0 2px 8px rgba(14,42,74,.04);
+  }
+  .step-num{
+    width:38px;height:38px;border-radius:999px;
+    background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:15px;margin-bottom:18px;font-family:var(--serif);
+    box-shadow:0 4px 10px rgba(14,42,74,.25);
+  }
+  .step h4{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--navy);}
+  .step p{font-size:14px;color:var(--muted);line-height:1.6;}
+
+  /* ROUTES */
+  .tabs{display:flex;justify-content:center;gap:10px;margin-bottom:40px;flex-wrap:wrap;}
+  .tab-btn{
+    padding:10px 22px;border-radius:999px;font-weight:700;font-size:14px;
+    border:1px solid var(--line);background:var(--white);color:var(--navy);cursor:pointer;
+    transition:.15s ease;
+  }
+  .tab-btn.active{background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:var(--white);border-color:var(--navy);box-shadow:0 6px 16px rgba(14,42,74,.25);}
+  .terminal-note{
+    background:var(--sky);border-left:3px solid var(--blue);border-radius:10px;
+    padding:14px 20px;font-size:13.5px;color:var(--muted);line-height:1.7;margin:0 0 28px;
+  }
+  .terminal-note b{color:var(--navy);}
+  .terminal-note .terminal-tag{margin:0 2px;}
+  .route-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .route-panel{display:none;}
+  .route-panel.active{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .route-card{
+    background:var(--white);border:1px solid rgba(14,42,74,.07);border-radius:var(--radius);
+    padding:24px 26px;display:flex;flex-direction:column;gap:14px;
+    box-shadow:0 2px 8px rgba(14,42,74,.04);
+    scroll-margin-top:90px;
+  }
+  .route-card.jump-highlight{background:var(--terracotta-bg);border-color:var(--gold);}
+  .route-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .route-top>div:first-child{flex:1;min-width:0;}
+  .route-top h4{font-size:18px;font-weight:600;color:var(--navy);}
+  .route-top span{font-size:13px;color:var(--muted);display:block;margin-top:4px;}
+  .route-price{font-size:12.5px;font-weight:700;color:var(--gold-dark);background:linear-gradient(135deg,rgba(216,161,58,.16),rgba(216,161,58,.09));padding:6px 11px;border-radius:8px;white-space:nowrap;font-family:var(--sans);}
+  .terminal-tag{
+    font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;white-space:nowrap;font-family:var(--sans);
+  }
+  .terminal-tag.liosion{background:rgba(28,95,168,.12);color:var(--blue);}
+  .terminal-tag.kifissos{background:rgba(196,106,54,.15);color:var(--terracotta);}
+  .route-top .terminal-tag{display:inline-block;margin-top:6px;}
+  .route-actions{display:flex;gap:10px;}
+  /* Visible captions instead of hover-only tooltips — title="" tells a mouse user
+     nothing on a touchscreen, and this is a mobile-first, tourist-facing page. */
+  .link-caption{display:flex;justify-content:space-between;gap:10px;margin-top:-2px;}
+  .link-caption span{
+    flex:1;font-size:10.5px;text-align:center;color:var(--muted);font-weight:600;
+    text-transform:uppercase;letter-spacing:.03em;padding:4px 6px;border-radius:6px;
+  }
+  .route-alt{
+    font-size:12px;color:var(--muted);padding-top:12px;margin-top:2px;
+    border-top:1px dashed var(--line);
+  }
+  .route-alt a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
+  .route-alt a:hover{color:var(--blue);}
+  .link-caption .cap-good{color:#1c8f5f;background:rgba(28,143,95,.08);}
+  .btn-sm{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:12px 14px;border-radius:999px;font-size:13.5px;font-weight:800;cursor:pointer;
+    box-sizing:border-box;border:none;color:#fff;letter-spacing:.01em;
+    transition:transform .2s cubic-bezier(.2,.7,.3,1),box-shadow .2s ease,filter .2s ease;
+  }
+  /* Equal visual weight for both choices on purpose — neither is the "default" one.
+     Bold gradient fills for a livelier, more vibrant feel. */
+  .btn-sm.free-link{background:linear-gradient(135deg,#3a8ee0,#1c5fa8);box-shadow:0 8px 18px rgba(28,95,168,.35);}
+  .btn-sm.free-link:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 26px rgba(28,95,168,.45);filter:brightness(1.08);}
+  .btn-sm.paid-link{background:linear-gradient(135deg,#f2c169,#c1862e);box-shadow:0 8px 18px rgba(193,134,46,.35);}
+  .btn-sm.paid-link:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 26px rgba(193,134,46,.45);filter:brightness(1.08);}
+  .btn-sm.free-link .ripple,.btn-sm.paid-link .ripple{background:rgba(255,255,255,.5);}
+
+  /* TRUST */
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .trust-list{list-style:none;display:flex;flex-direction:column;gap:18px;}
+  .trust-list li{
+    font-size:15.5px;color:var(--ink);line-height:1.6;
+    padding-left:18px;border-left:2.5px solid var(--gold);
+  }
+  .disclaimer{
+    background:var(--white);border:1.5px solid var(--terracotta-bg);border-radius:var(--radius);
+    padding:28px;font-size:14px;color:var(--muted);line-height:1.7;
+    box-shadow:0 2px 10px rgba(14,42,74,.05);border-left:4px solid var(--terracotta);
+  }
+  .disclaimer b{color:var(--navy);font-family:var(--serif);font-weight:600;}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line);padding:22px 0;}
+  .faq-q{
+    display:flex;width:100%;justify-content:space-between;align-items:center;
+    font-weight:700;font-size:16px;color:var(--navy);
+    background:none;border:none;font-family:inherit;text-align:left;cursor:pointer;padding:0;
+  }
+  .faq-q .faq-state{
+    font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--gold-dark);flex-shrink:0;margin-left:12px;
+  }
+  .faq-item.open .faq-q{color:var(--gold-dark);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:15px;color:var(--muted);}
+  .faq-item.open .faq-a{max-height:200px;margin-top:12px;}
+
+  /* accessible focus states — visible keyboard focus everywhere, invisible for mouse clicks */
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+    outline:2.5px solid var(--blue);outline-offset:2px;border-radius:4px;
+  }
+  .btn-sm:focus-visible,.tab-btn:focus-visible{outline-offset:3px;}
+
+  /* copy-to-clipboard fallback button */
+  .copy-email{
+    background:none;border:none;color:var(--blue);font-weight:700;font-size:inherit;
+    font-family:inherit;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px;
+  }
+  .copy-email.copied{color:var(--green,#2f7d5c);text-decoration:none;}
+
+  /* what-happens-next mini list in the success state */
+  .next-steps{list-style:none;text-align:left;max-width:280px;margin:16px auto 0;display:flex;flex-direction:column;gap:8px;}
+  .next-steps li{font-size:13.5px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;}
+  .next-steps li b{color:var(--navy);flex-shrink:0;}
+
+  /* CTA FORM */
+  .cta-section{
+    background:
+      radial-gradient(ellipse 700px 400px at 85% 100%, rgba(216,161,58,.1), transparent 60%),
+      linear-gradient(160deg,var(--navy),var(--navy-dark));
+    color:var(--white);
+  }
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .cta-grid h2{font-size:32px;font-weight:600;margin-bottom:16px;}
+  .cta-grid p{color:#c7d4e5;font-size:16px;margin-bottom:0;line-height:1.7;}
+  .form-card{background:var(--white);border-radius:20px;padding:32px;color:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.4);}
+  .form-row{margin-bottom:17px;}
+  .form-row label{display:block;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:7px;text-transform:uppercase;letter-spacing:.04em;}
+  .form-row label .optional-tag{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0;}
+  .form-row input,.form-row select,.form-row textarea{
+    width:100%;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);font-size:14.5px;font-family:var(--sans);
+    background:#f7fafc;transition:border-color .15s ease,background .15s ease;
+  }
+  .form-row textarea{resize:vertical;min-height:64px;line-height:1.5;}
+  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{outline:none;border-color:var(--blue);background:var(--white);box-shadow:0 0 0 4px rgba(28,95,168,.1);}
+  .form-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .submit-btn{
+    width:100%;padding:15px;border-radius:10px;
+    background:linear-gradient(135deg,#e8b654,var(--gold) 55%,var(--gold-dark));color:var(--navy-dark);
+    font-weight:700;font-size:15px;border:none;cursor:pointer;margin-top:8px;
+    box-shadow:0 8px 18px rgba(216,161,58,.3);transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(216,161,58,.4);}
+  .form-note{font-size:11px;color:var(--muted);margin-top:12px;text-align:left;}
+  .contact-fallback{font-size:11px;color:var(--muted);margin-top:8px;text-align:left;}
+  .contact-fallback a{color:var(--blue);font-weight:700;}
+  .chat-link{background:none;border:none;padding:0;margin:0;font:inherit;cursor:pointer;text-align:left;}
+  .contact-fallback .chat-link{color:var(--blue);font-weight:700;text-decoration:underline;}
+  .toast .chat-link{color:var(--blue);font-weight:700;}
+  .success-msg{display:none;text-align:center;padding:20px 0;}
+  .success-msg .success-tag{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--blue);background:rgba(58,142,224,.12);padding:6px 14px;border-radius:999px;margin-bottom:14px;
+  }
+  .success-msg h3{color:var(--navy);font-size:19px;margin-bottom:8px;}
+  .success-msg p{color:var(--muted);font-size:14.5px;}
+
+  /* FOOTER */
+  footer{background:var(--navy-dark);color:#a9bad0;padding:52px 0 30px;position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terracotta),var(--blue));}
+  .footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .footer-logo{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:600;font-size:19px;margin-bottom:10px;font-family:var(--serif);}
+  .footer-col h5{color:var(--white);font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;font-family:var(--sans);}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px;}
+  .footer-col ul .chat-link{color:inherit;}
+  .footer-col ul .chat-link:hover{color:var(--gold);}
+  .footer-bottom{padding-top:24px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .route-grid,.route-panel.active{grid-template-columns:1fr;}
+    .trust{grid-template-columns:1fr;}
+    .cta-grid{grid-template-columns:1fr;}
+    nav ul{display:none;}
+    .nav-toggle{display:block;}
+    .nav-cta{display:none;}
+    .hero h1{font-size:32px;}
+    .hero-stat b{font-size:40px;}
+    .hero-stats{gap:26px;}
+    section{padding:72px 0;}
+    .hero{padding:90px 20px 90px;}
+    .section-head{margin-bottom:40px;}
+    .section-head h2{font-size:28px;}
+    .section-head p{font-size:15px;}
+    .steps{grid-template-columns:1fr 1fr;gap:16px;}
+    .form-card{padding:24px 20px;}
+    .cta-grid{gap:36px;}
+  }
+
+  /* Phone-only (not laptops, even with a narrow window): surface the booking
+     request form before the route list. Reorders visually only — source order
+     (and reading/tab order) is unchanged. Laptops keep the original layout above. */
+  @media (max-width:600px){
+    body{display:flex;flex-direction:column;}
+    header{order:1;}
+    .hero{order:2;}
+    #why{order:3;}
+    #how{order:4;}
+    #request{order:5;}
+    #routes{order:6;}
+    #trust{order:7;}
+    #faq{order:8;}
+    footer{order:9;}
+  }
+
+  /* keep fixed bottom UI clear of the home-indicator on notched phones —
+     placed before the 480px block so that block's own bottom values still win there */
+  .back-to-top{bottom:calc(22px + env(safe-area-inset-bottom));}
+  .toast{bottom:calc(20px + env(safe-area-inset-bottom));}
+
+  @media (max-width:480px){
+    .wrap{padding:0 18px;}
+    .hero{padding:84px 18px 76px;}
+    .hero h1{font-size:27px;}
+    .hero p.lead{font-size:16.5px;}
+    .hero-stat b{font-size:32px;}
+    .hero-stats{gap:22px;}
+    .hero-actions .btn{flex:1;justify-content:center;padding:14px 18px;}
+    section{padding:56px 0;}
+    .section-head h2{font-size:24px;}
+    .why-card{padding:24px 20px;}
+    .steps{grid-template-columns:1fr;}
+    .route-actions{flex-direction:column;}
+    .form-cols{grid-template-columns:1fr;}
+    .cta-grid h2{font-size:26px;}
+    .footer-grid{gap:28px;}
+    .toast{left:14px;right:14px;max-width:none;bottom:calc(86px + env(safe-area-inset-bottom));}
+    .back-to-top{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));}
+    .chat-banner{padding:10px 14px 10px 12px;font-size:12px;}
+  }
+
+  /* ---------- INTERACTIVITY LAYER ---------- */
+
+  /* scroll progress bar */
+  .progress-bar{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:linear-gradient(90deg,var(--gold),var(--blue));
+    z-index:999;transition:width .1s ease-out;
+  }
+
+  /* live pulse dot in badge */
+  .badge{display:inline-flex;align-items:center;gap:8px;}
+  .live-dot{
+    width:8px;height:8px;border-radius:999px;background:#3fbf6f;
+    box-shadow:0 0 0 rgba(63,191,111,.6);
+    animation:pulseDot 1.8s infinite;
+  }
+  @keyframes pulseDot{
+    0%{box-shadow:0 0 0 0 rgba(63,191,111,.55);}
+    70%{box-shadow:0 0 0 8px rgba(63,191,111,0);}
+    100%{box-shadow:0 0 0 0 rgba(63,191,111,0);}
+  }
+
+  /* nav scrollspy */
+  nav ul a{position:relative;transition:opacity .2s ease,color .2s ease;}
+  nav ul a::after{
+    content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
+    background:var(--gold-dark);transition:width .25s ease;
+  }
+  nav ul a.active{opacity:1;color:var(--navy);}
+  nav ul a.active::after{width:100%;}
+
+  /* rotating destination word */
+  .rot-word{
+    color:var(--gold);font-weight:800;font-family:var(--serif);font-style:italic;
+    font-size:1.5em;line-height:1;display:inline-block;vertical-align:-3px;
+    transition:opacity .3s ease,transform .3s ease;
+  }
+  .rot-word.swap{opacity:0;transform:translateY(6px);}
+
+  /* hero decorative route line */
+  .route-line-decor{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;}
+  .wave-divider{position:absolute;bottom:-1px;left:0;width:100%;height:44px;z-index:3;}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  .why-grid .why-card.reveal.in-view:nth-child(2){transition-delay:.08s;}
+  .why-grid .why-card.reveal.in-view:nth-child(3){transition-delay:.16s;}
+  .steps .step.reveal.in-view:nth-child(2){transition-delay:.07s;}
+  .steps .step.reveal.in-view:nth-child(3){transition-delay:.14s;}
+  .steps .step.reveal.in-view:nth-child(4){transition-delay:.21s;}
+  .route-panel.active .route-card.reveal.in-view:nth-child(odd){transition-delay:.05s;}
+  .route-panel.active .route-card.reveal.in-view:nth-child(even){transition-delay:.1s;}
+  .trust-list li.reveal.in-view:nth-child(2){transition-delay:.08s;}
+  .trust-list li.reveal.in-view:nth-child(3){transition-delay:.16s;}
+  .trust-list li.reveal.in-view:nth-child(4){transition-delay:.24s;}
+
+  /* card hover life */
+  .why-card,.step,.route-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease, opacity .7s cubic-bezier(.2,.7,.3,1),background .6s ease;}
+  .why-card:hover,.step:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(14,42,74,.1);border-color:transparent;}
+  .route-card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 18px 36px rgba(14,42,74,.12);border-color:transparent;}
+
+  /* buttons: ripple + micro interactions */
+  .btn,.btn-sm,.tab-btn,.submit-btn,.nav-cta{position:relative;overflow:hidden;}
+  .ripple{
+    position:absolute;border-radius:999px;background:rgba(255,255,255,.55);
+    transform:scale(0);animation:rippleAnim .6s ease-out forwards;pointer-events:none;
+  }
+  .btn-ghost .ripple,.btn-sm .ripple,.tab-btn .ripple{background:rgba(14,42,74,.15);}
+  @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
+  .tab-btn.active{position:relative;}
+
+  /* animated tab underline swap already handled by bg */
+
+  /* toast / live activity */
+  .toast{
+    position:fixed;left:20px;bottom:20px;z-index:200;
+    background:var(--white);color:var(--ink);
+    border:1px solid var(--line);border-radius:14px;
+    padding:14px 18px;max-width:290px;
+    box-shadow:0 16px 40px rgba(14,42,74,.18);
+    display:flex;align-items:center;gap:12px;
+    transform:translateY(20px);opacity:0;
+    transition:transform .4s cubic-bezier(.2,.7,.3,1),opacity .4s ease;
+    pointer-events:none;
+  }
+  .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
+  .toast-dot{width:9px;height:9px;border-radius:999px;background:#3fbf6f;flex-shrink:0;}
+  .toast b{font-size:13.5px;}
+  .toast span{display:block;font-size:12px;color:var(--muted);margin-top:2px;}
+  .toast-close{background:none;border:none;cursor:pointer;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1;padding:4px 6px;flex-shrink:0;margin-left:auto;}
+  .toast-close:hover{color:var(--ink);}
+
+  /* route not listed callout */
+  .route-callout{
+    text-align:center;margin-top:32px;padding:20px 24px;background:var(--sky);
+    border-radius:var(--radius);font-size:14.5px;color:var(--ink);
+  }
+  .route-callout a{color:var(--blue);font-weight:700;}
+  .route-callout .callout-footnote{font-size:12px;color:var(--muted);margin-top:10px;}
+
+  /* click-tracking debug panel (add ?debug=1 to the URL) */
+  .debug-panel{
+    display:none;position:fixed;top:80px;right:20px;z-index:300;
+    background:var(--white);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;font-size:13px;box-shadow:0 10px 24px rgba(0,0,0,.15);max-width:220px;
+  }
+  .debug-panel b{display:block;margin-bottom:8px;color:var(--navy);}
+  .debug-panel .ratio{margin-top:6px;font-weight:700;color:var(--gold-dark);}
+  .debug-panel .hint{margin-top:8px;font-size:11px;color:var(--muted);}
+
+  /* back to top */
+  .back-to-top{
+    position:fixed;right:22px;bottom:22px;z-index:200;
+    height:44px;padding:0 20px;border-radius:999px;border:none;cursor:pointer;
+    background:var(--navy);color:var(--white);font-size:13px;font-weight:700;letter-spacing:.02em;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;
+    transition:opacity .3s ease,transform .3s ease,background .2s ease;
+    box-shadow:0 10px 24px rgba(14,42,74,.3);
+  }
+  .back-to-top.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+  .back-to-top:hover{background:var(--navy-dark);}
+
+  /* chat banner — small persistent tab on the right edge, always visible,
+     one click opens the Tawk widget directly (no hunting for a text link) */
+  .chat-banner{
+    position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:150;
+    display:flex;align-items:center;gap:9px;
+    background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:var(--white);
+    border:none;cursor:pointer;
+    padding:13px 18px 13px 16px;border-radius:12px 0 0 12px;
+    font-family:var(--sans);font-weight:700;font-size:13.5px;letter-spacing:.01em;
+    box-shadow:-6px 6px 20px rgba(14,42,74,.28);
+    transition:transform .2s ease,padding .2s ease,background .2s ease,color .2s ease;
+  }
+  .chat-banner:hover{background:linear-gradient(135deg,#e8b654,var(--gold) 55%,var(--gold-dark));color:var(--navy-dark);padding-right:22px;}
+  .chat-banner:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .chat-banner-dot{width:8px;height:8px;border-radius:999px;background:#3fbf6f;flex-shrink:0;animation:pulseDot 1.8s infinite;}
+
+  /* hero card float */
+  .hero-card{animation:floatCard 5s ease-in-out infinite;}
+  @keyframes floatCard{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .route-mini{transition:background .2s ease;}
+  .route-mini:hover{background:var(--sky);border-radius:8px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ktelioLogoIcon" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="100" fill="#0e2a4a"/>
+    <circle cx="100" cy="100" r="82" fill="none" stroke="#d8a13a" stroke-width="2.5"/>
+    <rect x="52" y="78" width="98" height="48" rx="16" fill="none" stroke="#ffffff" stroke-width="7"/>
+    <rect x="64" y="90" width="60" height="15" rx="6.5" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <circle cx="74" cy="130" r="9.5" fill="none" stroke="#ffffff" stroke-width="7"/>
+    <circle cx="126" cy="130" r="9.5" fill="none" stroke="#ffffff" stroke-width="7"/>
+    <circle cx="146" cy="116" r="5.5" fill="#d8a13a"/>
+  </symbol>
+</svg>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+  <div class="nav">
+    <div class="logo"><svg class="logo-mark" viewBox="0 0 200 200"><use href="#ktelioLogoIcon"/></svg>Ktelio</div>
+    <nav><ul>
+      <li><a href="#how" data-section="how">How it works</a></li>
+      <li><a href="#routes" data-section="routes">Routes</a></li>
+      <li><a href="#trust" data-section="trust">Why trust us</a></li>
+      <li><a href="#faq" data-section="faq">FAQ</a></li>
+    </ul></nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">Menu</button>
+    <a href="#request" class="nav-cta">Get your ticket</a>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#how" data-section="how">How it works</a></li>
+      <li><a href="#routes" data-section="routes">Routes</a></li>
+      <li><a href="#trust" data-section="trust">Why trust us</a></li>
+      <li><a href="#faq" data-section="faq">FAQ</a></li>
+      <li><a href="#request">Get your ticket</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="route-line-decor" viewBox="0 0 1120 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="routePath" d="M -20 420 C 220 380, 300 200, 520 220 S 820 380, 1140 120" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+    <circle r="6" fill="#d8a13a">
+      <animateMotion dur="7s" repeatCount="indefinite">
+        <mpath href="#routePath"/>
+      </animateMotion>
+    </circle>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><span class="live-dot"></span>Now booking · Greece, one route at a time</span>
+        <h1>Greece's intercity buses, <em>finally easy to book.</em></h1>
+        <p class="lead">KTEL is Greece's intercity bus network — a patchwork of independent regional operators, each with its own site, usually Greek-only. Ktelio brings them into one place, so you can reach <span class="rot-word" id="rotWord">Delphi</span> without hunting for the right one.</p>
+        <div class="hero-actions">
+          <a href="#routes" class="btn btn-gold">Find my route</a>
+          <a href="#how" class="btn btn-ghost">How it works</a>
+        </div>
+        <div class="hero-stats" id="heroStats">
+          <div class="hero-stat"><b><span class="count" data-target="20">0</span></b><span>routes covered</span></div>
+          <div class="hero-stat"><b>€<span class="count" data-target="5">0</span>*</b><span>concierge fee</span></div>
+          <div class="hero-stat"><b><span class="count" data-target="100">0</span>%</b><span>free option, always</span></div>
+        </div>
+        <p class="stats-footnote">*Starting price — the exact fee depends on the destination and how many tickets you need.</p>
+      </div>
+      <div class="hero-card">
+        <h3>Popular right now</h3>
+        <a class="route-mini" href="#route-delphi" data-jump="route-delphi">
+          <div class="r-name">Athens → Delphi<small>Home of the Oracle</small></div>
+          <span class="pill">from €15</span>
+        </a>
+        <a class="route-mini" href="#route-meteora" data-jump="route-meteora">
+          <div class="r-name">Athens → Meteora<small>Monasteries in the clouds</small></div>
+          <span class="pill">from €29</span>
+        </a>
+        <a class="route-mini" href="#route-nafplio" data-jump="route-nafplio">
+          <div class="r-name">Athens → Nafplio<small>Greece's first capital</small></div>
+          <span class="pill">from €13</span>
+        </a>
+        <a class="route-mini" href="#route-thessaloniki" data-jump="route-thessaloniki">
+          <div class="r-name">Athens → Thessaloniki<small>Direct intercity</small></div>
+          <span class="pill">from €40</span>
+        </a>
+      </div>
+    </div>
+    <a href="#routes" class="scroll-hint">
+      <span>See our destinations below</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </div>
+  <svg class="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 30 C 240 60, 480 0, 720 20 S 1200 50, 1440 15 V60 H0 Z" fill="#ffffff"/>
+  </svg>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The model</span>
+      <h2>One clear choice, no confusion</h2>
+      <p>Every route gives you two honest options. No account, no hidden fees, no guesswork.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3>Book it yourself — free</h3>
+        <p>Where we've mapped it, we link you straight to the official regional KTEL page. Elsewhere, we point you to a search that gets you there. No fee, no middleman. Just clarity.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>Let us handle it — €5</h3>
+        <p>Local sites, Greek-only forms, phone-only ticket offices — we deal with it and send your ticket straight to you.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>Fully transparent</h3>
+        <p>We're an independent booking helper, not affiliated with any KTEL operator. We say so everywhere, on purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-gray">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The process</span>
+      <h2>How booking with us works</h2>
+      <p>Four steps, no app to download, no account to create.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h4>Send your route</h4>
+        <p>Tell us where you're going, when, and how many travelers — takes under a minute.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h4>Send €5</h4>
+        <p>Just our fee upfront, by Revolut, IRIS, or PayPal. Your ticket cost is settled separately.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h4>We book it</h4>
+        <p>We reserve your seat with the correct regional KTEL and hold your ticket.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h4>You receive it</h4>
+        <p>Your ticket or clear pickup instructions land in your inbox — then you settle the fare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="routes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">20 routes and counting</span>
+      <h2>Explore the routes</h2>
+      <p>Ten scenic trips to Greece's top destinations, and ten high-volume domestic connections. Prices shown are estimates — the exact fare is confirmed when you book.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Route categories">
+      <button class="tab-btn active" data-tab="tourist" role="tab" aria-selected="true" aria-controls="tourist" id="tab-tourist">Tourist destinations</button>
+      <button class="tab-btn" data-tab="intercity" role="tab" aria-selected="false" aria-controls="intercity" id="tab-intercity">Major intercity</button>
+    </div>
+
+    <p class="terminal-note">Athens actually has <b>two</b> separate intercity terminals, depending where you're headed: <span class="terminal-tag liosion">Liosion</span> for Central Greece &amp; Thessaly, and <span class="terminal-tag kifissos">Kifissos</span> for the Peloponnese, Epirus &amp; Macedonia. We tag every Athens route below so you know which one to head to.</p>
+
+    <div class="route-panel active" id="tourist" role="tabpanel" aria-labelledby="tab-tourist">
+      <!-- Tour-alternative links (Delphi + Meteora only, deliberately not elsewhere): real GetYourGuide
+           destination pages, but not yet wrapped in a Travelpayouts tracking link — swap the two
+           getyourguide.com hrefs below for your actual Travelpayouts affiliate links once your
+           GetYourGuide program is approved, so clicks are attributed to you. -->
+      <div class="route-card reveal" id="route-delphi">
+        <div class="route-top"><div><h4>Athens → Delphi</h4><span>~3h · Sacred oracle site</span><span class="terminal-tag liosion">Liosion terminal</span></div><span class="route-price">from €15</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://www.ktel-fokidas.gr/en/delphi" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/delphi-l116/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-meteora">
+        <div class="route-top"><div><h4>Athens → Meteora (Kalambaka)</h4><span>~5h · Via Trikala, cliff-top monasteries</span><span class="terminal-tag liosion">Liosion terminal</span></div><span class="route-price">from €29</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktel-trikala.gr/en/direct-itinerary-from-athens-to-kalambaka-meteora/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/meteora-l15524/day-trips-tc172/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-meteora-thess">
+        <div class="route-top"><div><h4>Thessaloniki → Meteora (Kalambaka)</h4><span>~3h · Closer than from Athens</span></div><span class="route-price">from €21</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktel-trikala.gr/en/bus-to-meteora/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/thessaloniki-l115/meteora-day-trip-t481628/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-nafplio">
+        <div class="route-top"><div><h4>Athens → Nafplio</h4><span>~2h15m · Greece's first capital</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €13</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://www.ktelargolida.gr/en/athina-isthmos-fichti-mikines-argos-nafplio/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/nafplio-l7909/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-olympia">
+        <div class="route-top"><div><h4>Athens → Olympia</h4><span>~5h · Via Pyrgos, birthplace of the Olympics</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €30</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://online.ktelileias.gr/gr/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/athens-l91/one-day-tour-to-ancient-olympia-t454472/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-monemvasia">
+        <div class="route-top"><div><h4>Athens → Monemvasia</h4><span>~5h45m · Medieval castle town, via Sparti</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €30</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelbus.gr/lak/ticketweb/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+      <div class="route-card reveal" id="route-ioannina-zagori">
+        <div class="route-top"><div><h4>Athens → Ioannina (via Kalambaka)</h4><span>Gateway to Zagorochoria</span><span class="terminal-tag liosion">Liosion terminal (1st leg)</span></div><span class="route-price">2-leg trip</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://eticket.ktelioannina.gr/#!/dashboard/overview/search" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site (2nd leg)</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Exploring Zagorochoria once you're there? <a href="https://www.getyourguide.com/zagori-l146630/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-ouranoupoli">
+        <div class="route-top"><div><h4>Thessaloniki → Ouranoupoli</h4><span>~2h15m · Halkidiki &amp; Mount Athos gateway</span></div><span class="route-price">from €12</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktel-chalkidikis.gr/en/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Want to see Mount Athos from the water? <a href="https://www.getyourguide.com/ouranoupoli-l112587/cruises-boat-tours-tc48/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-galaxidi-itea">
+        <div class="route-top"><div><h4>Athens → Galaxidi / Itea</h4><span>~2.5–3.5h · Seaside towns near Delphi</span><span class="terminal-tag liosion">Liosion terminal</span></div><span class="route-price">from €17</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://www.ktel-fokidas.gr/en/itea" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/galaxidi-l228789/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-patras-olympia">
+        <div class="route-top"><div><h4>Patras → Olympia</h4><span>~3h · Via Pyrgos, for ferry arrivals from Italy</span></div><span class="route-price">from €10</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://www.ktelachaias.gr/en/δρομολόγια-2/patra-pyrgos-patra/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Stopping in Patras for a while? <a href="https://www.getyourguide.com/patras-l122165/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+    </div>
+
+    <div class="route-panel" id="intercity" role="tabpanel" aria-labelledby="tab-intercity">
+      <div class="route-card reveal" id="route-thessaloniki">
+        <div class="route-top"><div><h4>Athens → Thessaloniki</h4><span>~5.5h · Direct intercity</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €40</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelthes.gr/en/routes-athens-pireaus-thessaloniki/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+      <div class="route-card reveal" id="route-patras">
+        <div class="route-top"><div><h4>Athens → Patras</h4><span>~3h · Ferry connections</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €22</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://www.ktelachaias.gr/en/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+      <div class="route-card reveal" id="route-larissa">
+        <div class="route-top"><div><h4>Athens → Larissa</h4><span>~4h · Central Greece hub</span><span class="terminal-tag liosion">Liosion terminal</span></div><span class="route-price">from €30</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktellarisas.e-ticketing.gr/Pages/Destinations.aspx" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+      <div class="route-card reveal" id="route-volos">
+        <div class="route-top"><div><h4>Athens → Volos</h4><span>~4h · Gateway to Pelion</span><span class="terminal-tag liosion">Liosion terminal</span></div><span class="route-price">from €26</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelvolou.e-ticketing.gr/Pages/Destinations.aspx" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Exploring Pelion once you're in Volos? <a href="https://www.getyourguide.com/volos-l2545/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-ioannina">
+        <div class="route-top"><div><h4>Athens → Ioannina</h4><span>~5.5h · Direct intercity</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €35</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelioannina.gr/en/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Exploring Zagorochoria once you're there? <a href="https://www.getyourguide.com/zagori-l146630/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-kalamata">
+        <div class="route-top"><div><h4>Athens → Kalamata</h4><span>~3h15m · Southern Peloponnese</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €20</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelbus.gr/mes/ticketweb/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Exploring the Mani once you're there? <a href="https://www.getyourguide.com/kalamata-l42432/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-thess-larissa">
+        <div class="route-top"><div><h4>Thessaloniki → Larissa</h4><span>~2.5h · Central Greece connector</span></div><span class="route-price">from €11</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktellarisas.e-ticketing.gr/Pages/Destinations.aspx" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+      <div class="route-card reveal" id="route-thess-kavala">
+        <div class="route-top"><div><h4>Thessaloniki → Kavala</h4><span>~2h20m · Northern coast</span></div><span class="route-price">from €16</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelbus.gr/kav/ticketweb/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/thessaloniki-l115/day-trips-tc360/kavala-tl89351/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-corinth">
+        <div class="route-top"><div><h4>Athens → Corinth</h4><span>~1h · Canal &amp; ancient site</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €9</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelbus.gr/kor/ticketweb/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+        <div class="route-alt">Rather do a guided day trip than the bus? <a href="https://www.getyourguide.com/corinth-l118/" target="_blank" rel="sponsored noopener">See tour options</a></div>
+      </div>
+      <div class="route-card reveal" id="route-tripoli">
+        <div class="route-top"><div><h4>Athens → Tripoli</h4><span>~3h15m · Gateway to Arcadia</span><span class="terminal-tag kifissos">Kifissos terminal</span></div><span class="route-price">from €16</span></div>
+        <div class="route-actions"><a class="btn-sm free-link" href="https://ktelbus.gr/ark/ticketweb/" target="_blank" rel="noopener">Book it yourself</a><a class="btn-sm paid-link open-request" href="#request">Let us handle it — €5*</a></div>
+        <div class="link-caption"><span class="cap-good">Official site</span><span class="cap-good">We book it for you</span></div>
+      </div>
+    </div>
+
+    <div class="route-callout reveal">
+      <p>Don't see your destination? <a href="#request" id="routeNotListed">Tell us where you're going</a> — we're adding routes based on real requests, not guesses.</p>
+      <p class="callout-footnote">*Starting price — the exact fee depends on the destination and how many tickets you need.</p>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="section-gray">
+  <div class="wrap">
+    <div class="trust">
+      <div>
+        <div class="section-head" style="text-align:left;margin:0 0 26px;">
+          <span class="eyebrow">Transparency</span>
+          <h2>Why the free link exists</h2>
+          <p></p>
+        </div>
+        <ul class="trust-list">
+          <li class="reveal">We show you the free, official option first, every time — even though it earns us nothing.</li>
+          <li class="reveal">We only ask for the personal details a booking actually requires, and never keep them longer than needed.</li>
+          <li class="reveal">We're upfront on every forum and post: independent service, not an official KTEL page.</li>
+          <li class="reveal">You only pay our €5 fee — your ticket cost is always settled separately and clearly.</li>
+          <li class="reveal">We track which option you choose, free or paid — never who you are — just to learn honestly whether this service is worth building further.</li>
+        </ul>
+      </div>
+      <div class="disclaimer">
+        <b>A note on who we are.</b><br><br>
+        Ktelio is an independent booking assistant. We are <b>not affiliated with KTEL</b> or any regional bus operator. We simply make it easier for travelers to find and book routes that are otherwise scattered across dozens of separate local systems, most of them Greek-only.
+        <br><br>
+        Have a question before booking? Use the chat bubble in the corner — a real person replies, not a bot.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Good to know</span>
+      <h2>Frequently asked questions</h2>
+      <p></p>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-1"><span>Is this an official KTEL website?</span><span class="faq-state">Show</span></button>
+        <div class="faq-a" id="faq-a-1">No. Ktelio is an independent service that helps you find and book routes across Greece's many separate regional KTEL operators. We link you to official sites for free, or book on your behalf for a small fee.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-2"><span>What does the €5 fee actually cover?</span><span class="faq-state">Show</span></button>
+        <div class="faq-a" id="faq-a-2">It covers us navigating the local booking system, calling the ticket office if needed, and sending you clear instructions or a ready ticket. Your bus fare is paid separately and goes to the KTEL operator.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-3"><span>How do I pay?</span><span class="faq-state">Show</span></button>
+        <div class="faq-a" id="faq-a-3">Revolut and PayPal work well for international travelers; IRIS if you're in Greece. For your first booking with us, you can also pay after you receive your ticket.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-4"><span>What if my route isn't listed?</span><span class="faq-state">Show</span></button>
+        <div class="faq-a" id="faq-a-4">Send it to us anyway. We're adding routes based on what travelers actually ask for, and yours might be next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="request">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <span class="badge" style="background:rgba(255,255,255,.12);color:#f1e0bd;display:table;margin:0 auto 16px;">Takes under a minute</span>
+        <h2>Tell us where you're headed</h2>
+        <p>Fill in the four details below. We'll reply by email with your options — no commitment until you say go.</p>
+      </div>
+      <div class="form-card">
+        <!-- Web3Forms — free tier is 250 submissions/month (vs Formspree's 50).
+             access_key below is the real key the user generated at web3forms.com.
+             action/method stay set as a no-JS fallback (a plain form POST still
+             works); the submit handler below uses their JSON AJAX endpoint so we
+             can keep the inline success UI instead of navigating away. -->
+        <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="37e06d33-639b-448a-9158-20648efc9cf7">
+          <div class="form-row">
+            <label for="route">Route</label>
+            <select id="route" name="route" required>
+              <option value="" disabled selected>Select your route…</option>
+              <optgroup label="Tourist destinations">
+                <option>Athens → Delphi</option>
+                <option>Athens → Meteora (Kalambaka)</option>
+                <option>Thessaloniki → Meteora (Kalambaka)</option>
+                <option>Athens → Nafplio</option>
+                <option>Athens → Olympia</option>
+                <option>Athens → Monemvasia</option>
+                <option>Athens → Ioannina (via Kalambaka)</option>
+                <option>Thessaloniki → Ouranoupoli</option>
+                <option>Athens → Galaxidi / Itea</option>
+                <option>Patras → Olympia</option>
+              </optgroup>
+              <optgroup label="Major intercity">
+                <option>Athens → Thessaloniki</option>
+                <option>Athens → Patras</option>
+                <option>Athens → Larissa</option>
+                <option>Athens → Volos</option>
+                <option>Athens → Ioannina</option>
+                <option>Athens → Kalamata</option>
+                <option>Thessaloniki → Larissa</option>
+                <option>Thessaloniki → Kavala</option>
+                <option>Athens → Corinth</option>
+                <option>Athens → Tripoli</option>
+              </optgroup>
+              <option value="other">My route isn't listed</option>
+            </select>
+          </div>
+          <div class="form-cols">
+            <div class="form-row">
+              <label for="date">Travel date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-row">
+              <label for="passengers">Passengers</label>
+              <input type="number" id="passengers" name="passengers" min="1" value="1" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="contact">Email address</label>
+            <input type="email" id="contact" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-row">
+            <label for="comment">Comment <span class="optional-tag">(optional)</span></label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Flexible dates, luggage, group size, anything else we should know..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send my request</button>
+          <p class="form-note">No payment now — this sends straight to us automatically, no email app needed. We'll confirm within 24 hours.</p>
+          <p class="contact-fallback">Prefer not to wait? <button type="button" class="copy-email" id="copyEmail" data-email="hello@ktelio.gr">Copy hello@ktelio.gr</button> or <button type="button" class="chat-link" id="openChatBtn">chat with us instead</button>.</p>
+        </form>
+        <div class="success-msg" id="successMsg" role="status" aria-live="polite">
+          <span class="success-tag">Received</span>
+          <h3>Request received!</h3>
+          <p>We'll get back to you within 24 hours by email with your booking options.</p>
+          <ul class="next-steps">
+            <li><b>1.</b> We check availability for your route and date.</li>
+            <li><b>2.</b> We confirm the exact fare and how you'll receive the ticket.</li>
+            <li><b>3.</b> You settle up, and it's booked.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div style="max-width:280px;">
+        <div class="footer-logo"><svg class="logo-mark" viewBox="0 0 200 200"><use href="#ktelioLogoIcon"/></svg>Ktelio</div>
+        <p style="font-size:14px;">Making Greece's regional bus network easy to book, one route at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#routes">Routes</a></li>
+          <li><a href="#trust">Why trust us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get in touch</h5>
+        <ul>
+          <li><button type="button" class="chat-link" id="openChatFooterBtn">Chat with us</button></li>
+          <li><a href="mailto:hello@ktelio.gr">hello@ktelio.gr</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ktelio. Independent service, not affiliated with KTEL.</span>
+      <span>Buses to everywhere in Greece. Finally in one place.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="liveToast" role="status" aria-live="polite">
+  <div class="toast-dot"></div>
+  <div><b>Just launched</b><span>Be our very first real booking — <a href="#request" style="color:var(--blue);font-weight:700;">get started</a></span></div>
+  <button class="toast-close" id="toastClose" aria-label="Dismiss">Close</button>
+</div>
+
+<div class="toast" id="submitToast" role="status" aria-live="polite">
+  <div class="toast-dot"></div>
+  <div><b>Thanks for the trust!</b><span><span id="submitToastLead">We'll be in touch within 24 hours.</span> Or <button type="button" class="chat-link" id="submitToastChatBtn">chat with us</button> any time.</span></div>
+  <button class="toast-close" id="submitToastClose" aria-label="Dismiss">Close</button>
+</div>
+
+<div class="debug-panel" id="debugPanel">
+  <b>Click tracker (debug)</b>
+  <div>Free clicks: <span id="debugFree">0</span></div>
+  <div>Paid clicks: <span id="debugPaid">0</span></div>
+  <div class="ratio">Ratio: <span id="debugRatio">—</span></div>
+  <div class="hint">Visible because ?debug=1 is in the URL. Counts are per-browser and reset in private/incognito windows or on another device — treat this as a rough sanity check, not a trustworthy sample size, and swap in real analytics (GA4/Plausible) before making decisions on it.</div>
+</div>
+
+<button class="chat-banner" id="chatBanner" type="button"><span class="chat-banner-dot"></span>Chat with us</button>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">Top</button>
+
+<script>
+  // Route tabs
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>{
+        b.classList.remove('active');
+        b.setAttribute('aria-selected','false');
+      });
+      document.querySelectorAll('.route-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // "Popular right now" hero links jump straight to the matching route card —
+  // switching tabs first if the route lives in the panel that isn't showing.
+  document.querySelectorAll('.route-mini[data-jump]').forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const target = document.getElementById(link.dataset.jump);
+      if(!target) return;
+      const panel = target.closest('.route-panel');
+      if(panel && !panel.classList.contains('active')){
+        const tabBtn = document.querySelector(`.tab-btn[data-tab="${panel.id}"]`);
+        if(tabBtn) tabBtn.click();
+      }
+      requestAnimationFrame(()=>{
+        target.scrollIntoView({behavior:'smooth', block:'center'});
+        target.classList.add('jump-highlight');
+        setTimeout(()=> target.classList.remove('jump-highlight'), 1600);
+      });
+    });
+  });
+
+  // FAQ accordion — keyboard-accessible <button> with aria-expanded, not a click-anywhere div
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        const q = i.querySelector('.faq-q');
+        q.setAttribute('aria-expanded','false');
+        q.querySelector('.faq-state').textContent = 'Show';
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        btn.querySelector('.faq-state').textContent = 'Hide';
+      }
+    });
+  });
+
+  // Route card "handle it" buttons scroll to request form and prefill
+  document.querySelectorAll('.open-request').forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const routeName = btn.closest('.route-card').querySelector('h4').textContent;
+      trackClick('paid', routeName);
+      document.getElementById('route').value = routeName;
+      document.getElementById('request').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  // Free "book it yourself" buttons: track the click. Each button's href and label
+  // are set at author time in the HTML — all 20 routes now link to a real official
+  // KTEL operator booking page, so the right destination and wording work even if
+  // this script fails to load, instead of depending on JS to fix a "#" link.
+  document.querySelectorAll('.route-card .free-link').forEach(a=>{
+    const routeName = a.closest('.route-card').querySelector('h4').textContent;
+    a.addEventListener('click', ()=> trackClick('free', routeName));
+  });
+
+  // "Route not listed" callout — sends them to the form pre-set to "other"
+  // and drops focus into the comment box so it's obvious where to name it.
+  const notListedLink = document.getElementById('routeNotListed');
+  if(notListedLink){
+    notListedLink.addEventListener('click', ()=>{
+      document.getElementById('route').value = 'other';
+      const commentEl = document.getElementById('comment');
+      if(commentEl){
+        commentEl.placeholder = 'Tell us the route you need (from → to)...';
+        setTimeout(()=> commentEl.focus(), 500);
+      }
+    });
+  }
+
+  // Form quality-of-life: can't pick a date in the past; sane passenger cap
+  const dateInput = document.getElementById('date');
+  if(dateInput){
+    dateInput.min = new Date().toISOString().split('T')[0];
+  }
+  const passengersInput = document.getElementById('passengers');
+  if(passengersInput){ passengersInput.max = '9'; }
+
+  // Copy-to-clipboard fallback for the email address — a real "copy this address"
+  // option for the visitor whose device has no mailto handler, not just a mailto: link.
+  const copyEmailBtn = document.getElementById('copyEmail');
+  if(copyEmailBtn){
+    copyEmailBtn.addEventListener('click', async ()=>{
+      const email = copyEmailBtn.dataset.email;
+      const original = copyEmailBtn.textContent;
+      try{
+        await navigator.clipboard.writeText(email);
+        copyEmailBtn.textContent = 'Copied!';
+      }catch(err){
+        // clipboard API unavailable — fall back to a prompt so the address is still copyable
+        window.prompt('Copy this email address:', email);
+        copyEmailBtn.textContent = original;
+        return;
+      }
+      copyEmailBtn.classList.add('copied');
+      setTimeout(()=>{
+        copyEmailBtn.textContent = original;
+        copyEmailBtn.classList.remove('copied');
+      }, 2200);
+    });
+  }
+
+  // "Chat with us" buttons open the Tawk.to widget (added near </body>). If the
+  // widget script hasn't loaded yet — or its Property ID hasn't been set up —
+  // fall back to a pre-filled email instead of leaving a dead click.
+  function openChatWidget(){
+    if(window.Tawk_API && typeof Tawk_API.toggle === 'function'){
+      Tawk_API.toggle();
+    } else {
+      window.location.href = 'mailto:hello@ktelio.gr?subject=Question about Ktelio';
+    }
+  }
+  ['openChatBtn','openChatFooterBtn','chatBanner','submitToastChatBtn'].forEach(id=>{
+    const btn = document.getElementById(id);
+    if(btn) btn.addEventListener('click', openChatWidget);
+  });
+
+  // Form submit — POSTs straight to Web3Forms (JSON AJAX endpoint) so the
+  // request lands in the inbox automatically, no mail app needed on the
+  // visitor's end. fetch() tells us whether delivery actually worked, so a
+  // genuine failure (offline, Web3Forms down, monthly cap hit) falls back
+  // to a pre-filled mailto draft instead of silently losing the request.
+  document.getElementById('requestForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = this;
+    const route = document.getElementById('route').value || 'Not specified';
+    const date = document.getElementById('date').value || 'Not specified';
+    const passengers = document.getElementById('passengers').value || '1';
+    const contact = document.getElementById('contact').value || 'Not provided';
+    const comment = document.getElementById('comment').value.trim();
+
+    trackClick('paid_submit', route);
+
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+    if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+    const payload = Object.fromEntries(new FormData(form));
+    payload.subject = 'New Ktelio booking request: ' + route;
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(response => response.json().then(json => ({ ok: response.ok && json.success, json }))
+    ).then(({ ok }) => {
+      if(!ok) throw new Error('Web3Forms error response');
+      form.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      showSubmitToast(true);
+    }).catch(() => {
+      const subject = encodeURIComponent('New Ktelio booking request: ' + route);
+      const body = encodeURIComponent(
+        'Route: ' + route + '\n' +
+        'Travel date: ' + date + '\n' +
+        'Passengers: ' + passengers + '\n' +
+        'Contact: ' + contact + '\n' +
+        'Comment: ' + (comment || 'None') + '\n\n' +
+        'Sent from the Ktelio request form (automatic send failed).'
+      );
+      window.location.href = 'mailto:hello@ktelio.gr?subject=' + subject + '&body=' + body;
+      form.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      showSubmitToast(false);
+    }).finally(() => {
+      if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = originalBtnText; }
+    });
+  });
+
+  /* ---------- INTERACTIVITY ---------- */
+
+  // scroll progress bar
+  const progressBar = document.getElementById('progressBar');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // mobile hamburger menu (council fix — nav links were unreachable below 860px)
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(navToggle && mobileMenu){
+    navToggle.addEventListener('click', ()=>{
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.textContent = isOpen ? 'Close' : 'Menu';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        mobileMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = 'Menu';
+      });
+    });
+  }
+
+  // back to top button
+  const backToTop = document.getElementById('backToTop');
+  document.addEventListener('scroll', ()=>{
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  }, {passive:true});
+  backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // scrollspy nav
+  const navLinks = document.querySelectorAll('nav ul a[data-section]');
+  const spySections = Array.from(navLinks).map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+  function updateSpy(){
+    let current = null;
+    spySections.forEach(sec=>{
+      const rect = sec.getBoundingClientRect();
+      if(rect.top <= 140 && rect.bottom > 140) current = sec.id;
+    });
+    navLinks.forEach(a=>{
+      a.classList.toggle('active', a.dataset.section === current);
+    });
+  }
+  document.addEventListener('scroll', updateSpy, {passive:true});
+  updateSpy();
+
+  // scroll reveal via IntersectionObserver
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  // re-observe route cards whenever a tab is switched (newly visible ones)
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.route-panel.active .route-card').forEach(card=>{
+        card.classList.add('in-view');
+      });
+    });
+  });
+
+  // animated counters for hero stats
+  const counters = document.querySelectorAll('.count');
+  let countersStarted = false;
+  function animateCounters(){
+    if(countersStarted) return;
+    countersStarted = true;
+    counters.forEach(el=>{
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1100;
+      const start = performance.now();
+      function step(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if(progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  const heroStatsEl = document.getElementById('heroStats');
+  if(heroStatsEl){
+    const statsObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ animateCounters(); statsObserver.disconnect(); }
+      });
+    }, {threshold:0.4});
+    statsObserver.observe(heroStatsEl);
+  }
+
+  // rotating destination word in hero
+  const rotWords = ['Delphi','Meteora','Nafplio','Olympia','Monemvasia','Ouranoupoli'];
+  const rotEl = document.getElementById('rotWord');
+  if(rotEl){
+    let rotIndex = 0;
+    setInterval(()=>{
+      rotEl.classList.add('swap');
+      setTimeout(()=>{
+        rotIndex = (rotIndex + 1) % rotWords.length;
+        rotEl.textContent = rotWords[rotIndex];
+        rotEl.classList.remove('swap');
+      }, 300);
+    }, 2400);
+  }
+
+  // ripple effect on buttons
+  document.querySelectorAll('.btn, .btn-sm, .tab-btn, .submit-btn, .nav-cta').forEach(btn=>{
+    btn.addEventListener('click', function(e){
+      const rect = this.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      this.appendChild(ripple);
+      setTimeout(()=> ripple.remove(), 650);
+    });
+  });
+
+  // Honest "just launched" banner — shown once, dismissible, never fakes activity
+  // that hasn't happened. (We had a simulated "someone just booked" toast here;
+  // pulled it because it actively undermines trust with a zero-customer site.)
+  const toastEl = document.getElementById('liveToast');
+  const toastClose = document.getElementById('toastClose');
+  function showLaunchToast(){
+    if(localStorage.getItem('ktelio_toast_dismissed')) return;
+    toastEl.classList.add('show');
+  }
+  setTimeout(showLaunchToast, 3000);
+  if(toastClose){
+    toastClose.addEventListener('click', ()=>{
+      toastEl.classList.remove('show');
+      localStorage.setItem('ktelio_toast_dismissed', '1');
+    });
+  }
+
+  // Post-submit "thanks + chat fallback" toast — fires every time the request
+  // form is sent (see the submit handler above), auto-hides after 9s, or can
+  // be dismissed early.
+  const submitToastEl = document.getElementById('submitToast');
+  const submitToastLead = document.getElementById('submitToastLead');
+  const submitToastClose = document.getElementById('submitToastClose');
+  let submitToastTimer = null;
+  function showSubmitToast(ok){
+    if(!submitToastEl) return;
+    if(submitToastLead){
+      submitToastLead.textContent = ok
+        ? "We'll be in touch within 24 hours."
+        : "That didn't send automatically, so we've opened a backup email for you instead.";
+    }
+    toastEl.classList.remove('show'); // don't stack with the launch toast
+    submitToastEl.classList.add('show');
+    clearTimeout(submitToastTimer);
+    submitToastTimer = setTimeout(()=> submitToastEl.classList.remove('show'), 9000);
+  }
+  if(submitToastClose){
+    submitToastClose.addEventListener('click', ()=>{
+      submitToastEl.classList.remove('show');
+      clearTimeout(submitToastTimer);
+    });
+  }
+
+  /* ---------- CLICK TRACKING (council fix: make the free/paid ratio measurable) ----------
+     No backend yet, so this logs to localStorage so the founder can actually read
+     the ratio today via ?debug=1. Swap in real analytics (GA4, Plausible, Fathom)
+     by filling in the gtag/plausible calls below — the event shape is already there. */
+  function trackClick(type, route){
+    try{
+      if(type === 'free' || type === 'paid'){
+        const key = type === 'free' ? 'ktelio_free_clicks' : 'ktelio_paid_clicks';
+        const n = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+        localStorage.setItem(key, n);
+      }
+      if(window.gtag) window.gtag('event', 'route_click', {click_type: type, route: route});
+      if(window.plausible) window.plausible('Route Click', {props:{type:type, route:route}});
+      console.log('[ktelio click]', type, route);
+    }catch(err){ /* localStorage unavailable — tracking is best-effort, not load-bearing */ }
+    updateDebugPanel();
+  }
+
+  function updateDebugPanel(){
+    const panel = document.getElementById('debugPanel');
+    if(!panel) return;
+    const free = parseInt(localStorage.getItem('ktelio_free_clicks') || '0', 10);
+    const paid = parseInt(localStorage.getItem('ktelio_paid_clicks') || '0', 10);
+    document.getElementById('debugFree').textContent = free;
+    document.getElementById('debugPaid').textContent = paid;
+    const total = free + paid;
+    document.getElementById('debugRatio').textContent = total
+      ? Math.round(free / total * 100) + '% free / ' + Math.round(paid / total * 100) + '% paid'
+      : '— (no clicks yet)';
+  }
+
+  if(new URLSearchParams(window.location.search).get('debug') === '1'){
+    const panel = document.getElementById('debugPanel');
+    if(panel) panel.style.display = 'block';
+  }
+  updateDebugPanel();
+</script>
+
+<!-- Tawk.to live chat widget — connected to the real Ktelio property. Default
+     launcher bubble is hidden on load: the on-brand "Chat with us" tab on the
+     right edge of the page is the single trigger, via Tawk_API.toggle(). -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+Tawk_API.onLoad = function(){
+  Tawk_API.hideWidget();
+};
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a61cc9c18fd691d456ca44f/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
+<!-- Vercel Web Analytics — this is a plain static HTML file with no build step,
+     so the npm package + `import { Analytics } from "@vercel/analytics/next"`
+     route doesn't apply (that's the Next.js integration, needs a bundler).
+     This is Vercel's own script-tag method for framework-free static sites.
+     Starts collecting once the site is deployed on Vercel with Web Analytics
+     switched on for the project (Project → Analytics tab). -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
